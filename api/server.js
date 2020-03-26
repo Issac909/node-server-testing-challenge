@@ -6,8 +6,8 @@ const KnexStore = require("connect-session-knex")(session);
 const knex = require("../database/dbConfig")
 
 
-// const userRouter = require("./users/user-router");
-// const pokedexRouter = require("./articles/pokedex-router")
+const userRouter = require("../users/user-router");
+const pokedexRouter = require("../pokedex/pokedex-router")
 const server = express();
 
 const sessionsConfig = {
@@ -35,8 +35,8 @@ server.use(cors());
 server.use(express.json());
 server.use(session(sessionsConfig));
 
-// server.use("/api/users", userRouter);
-// server.use("/api/pokedex", pokedexRouter)
+server.use("/api/users", userRouter);
+server.use("/api/pokedex", pokedexRouter)
 
 server.get('/', (req, res) => {
     res.status(200).json({ api: 'up'})
