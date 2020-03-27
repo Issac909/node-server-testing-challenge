@@ -10,7 +10,7 @@ module.exports = {
 };
 
 function find() {
-  return db('pokedex').select('id', 'name', 'type');
+  return db('pokedex').select('id', 'name', 'type1', 'type2');
 }
 
 function findBy(filter) {
@@ -26,7 +26,7 @@ async function add(pokemon) {
 function findFakemon(id) {
     if(!id) {
         return db("pokedex")
-        .join("users", "pokemon.userId", "=", "users.id")
+        .join("users", "pokedex.userId", "=", "users.id")
         .select("pokedex.id", "pokedex.name", "pokedex.type")
     }
 }
