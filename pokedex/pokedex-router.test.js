@@ -16,7 +16,7 @@ describe("pokedex router", function() {
         });
     });
 
-    it("should return list of categories", function() {
+    it("should return an array of pokemon names", function() {
       return request(server)
         .get("/api/pokedex")
         .then(res => {
@@ -24,4 +24,15 @@ describe("pokedex router", function() {
         });
     });
   });
+
+  describe("GET /api/pokedex/types", function() {
+    it("should return with status 200", function() {
+      return request(server)
+        .get("/api/pokedex/types")
+        .then(res => {
+          expect(res.status).toBe(400);
+        });
+    });
+  });
+
 });

@@ -16,6 +16,6 @@ module.exports = function restricted (req, res, next)  {
       }
     });
   } else {
-    res.status(400).json({ message: "No credentials provided" });
+    res.status(400).json({ message: "User must be logged in for this feature" });
   }
 };

@@ -17,13 +17,15 @@ exports.up = function(knex) {
     .createTable("pokedex", tbl => {
         tbl.increments();
         tbl.string("name").notNullable().unique()
-        tbl.integer("type").notNullable().references("types.id")
+        tbl.integer("type1").notNullable().references("types.id")
+        tbl.integer("type2").references("types.id").unique()
         tbl.integer("userId").notNullable().references("users.id")
     })
   };
 
   exports.down = function(knex) {
     return knex.schema
-    .dropTableIfExists("pokemon")
+    .dropTableIfExists("pokedex")
     .dropTableIfExists("users")
+    .dropTableIfExists("types")
   };
