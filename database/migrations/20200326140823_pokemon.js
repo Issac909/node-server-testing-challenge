@@ -11,7 +11,8 @@ exports.up = function(knex) {
 
     .createTable("types", tbl => {
         tbl.increments();
-        tbl.string("type").notNullable().unique()
+        tbl.string("type1").notNullable().unique()
+        tbl.string("type2").unique()
     })    
 
     .createTable("pokedex", tbl => {
