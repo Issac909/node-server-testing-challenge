@@ -30,7 +30,7 @@ describe("pokedex router", function() {
       return request(server)
         .get("/api/pokedex/types")
         .then(res => {
-          expect(res.status).toBe(400);
+          expect(res.status).toBe(200);
         });
     });
   });

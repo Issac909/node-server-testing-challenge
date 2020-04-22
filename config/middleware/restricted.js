@@ -1,8 +1,8 @@
-const jwt = require("jsonwebtoken"); // <<< install this npm package
+const jwt = require("jsonwebtoken"); 
 
 const { jwtSecret } = require("./secrets");
 
-module.exports = function restricted (req, res, next)  {
+function restricted (req, res, next)  {
   const { authorization } = req.headers;
 
   if (authorization) {
@@ -19,3 +19,5 @@ module.exports = function restricted (req, res, next)  {
     res.status(400).json({ message: "User must be logged in for this feature" });
   }
 };
+
+module.exports = restricted;

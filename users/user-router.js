@@ -3,9 +3,9 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
-const secrets = require('../config/secrets')
+const secrets = require('../config/middleware/secrets')
 
-const restricted = require("../config/restricted");
+const restricted = require("../config/middleware/restricted");
 const Users = require("./user-model");
 
 function generateToken(user) {
@@ -60,7 +60,7 @@ router.post("/login", (req, res) => {
   });
 
 
-router.get("/",(req, res) => {
+router.get("/", (req, res) => {
   Users.find()
     .then(users => {
       res.json(users);
