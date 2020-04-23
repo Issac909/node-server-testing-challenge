@@ -12,7 +12,7 @@ describe("pokedex router", function() {
       return request(server)
         .get("/api/pokedex")
         .then(res => {
-          expect(res.status).toBe(200);
+          expect(res.statusCode).toBe(200);
         });
     });
 
@@ -25,14 +25,53 @@ describe("pokedex router", function() {
     });
   });
 
-  describe("GET /api/pokedex/types", function() {
-    it("should return with status 200", function() {
-      return request(server)
-        .get("/api/pokedex/types")
-        .then(res => {
-          expect(res.status).toBe(200);
-        });
-    });
-  });
+  describe('POST /api/pokedex/', function() {
+    it('should create Fakemon', async() => {
+      const res = await request(server)
+        .post('/api/posts')
+        .send({
+          id: 2,
+          
+          name: 'Venasaur',
+          type1: 7,
+          type2: 12,
+          userId: 1
+        })
+        expect(res.statusCode).toEqual(201)
+        expect(res.body).toHaveProperty('post')
+    })
+  })
+
+//   describe("GET /api/pokedex/types", function() {
+//     let token;
+
+//     beforeEach(() => {
+//       return request(server)
+//       .post('/api/auth/login', {
+//         body: JSON.stringify({
+//           username: 'Ash Catchum',
+//           password:'admin',
+//         })
+//       })
+//       .then(res => {
+//         console.log(res.body);
+//         token = res.token;
+//       })
+//       .catch(err => console.log(err.message))
+//     })
+
+//     it("should return with status 200", function() {
+//       return request(server)
+//         .get("/api/pokedex/types", {
+//           headers: {
+//             'Authorization': token
+//           }
+//         })
+//         .then(res => {
+//           // console.log(token);
+//           expect(res.status).toBe(200);
+//         });
+//     });
+//   });
 
 });

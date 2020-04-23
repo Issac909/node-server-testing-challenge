@@ -15,7 +15,7 @@ router.get("/", (req, res) => {
     });
 });
 
-router.get("/types", (req, res) => {
+router.get("/types", restricted, (req, res) => {
   const type = req.body;
   if(type) {
     Pokedex.findBy(type)
